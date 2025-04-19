@@ -29,6 +29,23 @@ Like this there are multiple common configuration which developers needs to crea
 Spring Boot can automatically configure these common configuration scenarios. If Spring Boot detects that you have the H2 database library in your application’s classpath, it will automatically configure an embedded H2 database. If JdbcTemplate is in
 the classpath, then it will also configure a JdbcTemplate bean for you. There’s no need for you to worry about configuring those beans. They’ll be configured for you, ready to inject into any of the beans you write.</br></br>
 
+
+<b1>STARTER DEPENDENCIES</b1></br></br>
+It can be challenging to add dependencies to a project’s build. What library do you need? What are its group and artifact? Which version do you need? Will that version play well with other dependencies in the same project? </br></br>
+Spring Boot offers help with project dependency management by way of starter dependencies. Starter dependencies are really just special Maven (and Gradle) dependencies that take advantage of transitive dependency resolution to aggregate commonly used libraries under a handful of feature-defined dependencies. </br></br>
+For example, suppose that you’re going to build a REST API with Spring MVC that works with JSON resource representations. Additionally, you want to apply declarative validation per the JSR-303 specification and serve the application using an embedded Tomcat server. To accomplish all of this, you’ll need (at minimum) the following eight dependencies in your Maven or Gradle build: </br></br>
+■ org.springframework:spring-core </br>
+■ org.springframework:spring-web </br>
+■ org.springframework:spring-webmvc </br>
+■ com.fasterxml.jackson.core:jackson-databind </br>
+■ org.hibernate:hibernate-validator </br>
+■ org.apache.tomcat.embed:tomcat-embed-core </br>
+■ org.apache.tomcat.embed:tomcat-embed-el </br>
+■ org.apache.tomcat.embed:tomcat-embed-logging-juli </br> </br>
+
+On the other hand, if you were to take advantage of Spring Boot starter dependencies, you could simply add the Spring Boot “web” starter (org.springframework.boot:spring-boot-starter-web) as a build dependency. This single dependency will transitively pull in all of those other dependencies so you don’t have to ask for them all. </br></br>
+But there’s something more subtle about starter dependencies than simply reducing build dependency count. Notice that by adding the “web” starter to your build, you’re specifying a type of functionality that your application needs. Your app is a web application, so you add the “web” starter. Likewise, if your application will use JPA persistence, then you can add the “jpa” starter. If it needs security, you can add the “security” starter. In short, you no longer need to think about what libraries you’ll need to support certain functionality; you simply ask for that functionality by way of the pertinent starter dependency.</br></br>
+
 <b1>THE COMMAND-LINE INTERFACE (CLI)</b1></br></br>
 In addition to auto-configuration and starter dependencies, Spring Boot also offers an intriguing new way to quickly write Spring applications. The Spring Boot CLI makes it possible to write applications by doing more than writing
 the application code. </br></br>
