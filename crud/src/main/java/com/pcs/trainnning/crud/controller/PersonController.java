@@ -1,11 +1,11 @@
 package com.pcs.trainnning.crud.controller;
 
 import com.pcs.trainnning.crud.entity.Person;
+import com.pcs.trainnning.crud.exception.EntityNotFoundException;
 import com.pcs.trainnning.crud.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 /*
@@ -36,7 +36,7 @@ public class PersonController {
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable("id") Long id){
         //get this id from table
-        return null;
+        return personService.getPersonById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     @PostMapping
@@ -46,14 +46,11 @@ public class PersonController {
 
     @PutMapping
     public void updatePerson(@RequestBody Person person){
-        //save to DB
+        personService.save(person);
     }
 
     @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable("id") Long id){
-        //delete this id from table
+        personService.deleteById(id);
     }
-
-
-
 }

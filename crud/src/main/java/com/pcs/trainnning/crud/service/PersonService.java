@@ -5,8 +5,8 @@ import com.pcs.trainnning.crud.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonService {
@@ -18,7 +18,15 @@ public class PersonService {
         return personRepository.findAll();
     }
 
+    public Optional<Person> getPersonById(Long id){
+        return personRepository.findById(id);
+    }
+
     public void save(Person person){
         personRepository.save(person);
+    }
+
+    public void deleteById(Long id){
+        personRepository.deleteById(id);
     }
 }
