@@ -16,7 +16,7 @@ R - Reading from DB	    - GET   	- /person -> All persons
 					- /person/name/{name} - person with name
 					- /person/age/{age} - person with age
 
-U - Update		    - PUT	- /person {body -> name:"Virat", age:38}
+U - Update		    - PUT	- /person {body -> id:1, name:"Virat", age:38}
 
 D - Delete		    - DELETE	- /person/{id}  -> /person/1 -> delete person by id
  */
